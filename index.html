@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lì Xì May Mắn</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+        .envelope-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .envelope {
+            width: 100px;
+            height: 150px;
+            background-color: #ff4d4f;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .envelope:hover {
+            transform: scale(1.1);
+        }
+        .envelope.opened {
+            background-color: #28a745;
+            cursor: default;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chọn Một Bao Lì Xì May Mắn!</h1>
+    <p>Mỗi người chỉ được chọn một lần, hãy thử vận may của bạn!</p>
+    <div class="envelope-container" id="envelopeContainer"></div>
+    <div class="message" id="message"></div>
+
+    <script>
+        const envelopeContainer = document.getElementById('envelopeContainer');
+        const message = document.getElementById('message');
+        const totalEnvelopes = 10;
+        let hasChosen = false;
+
+        // Generate envelopes
+        for (let i = 0; i < totalEnvelopes; i++) {
+            const envelope = document.createElement('div');
+            envelope.className = 'envelope';
+            envelope.innerText = 'Bao #' + (i + 1);
+
+            envelope.addEventListener('click', function() {
+
+
+                hasChosen = true;
+                const luckyMoney = Math.floor(Math.random() * (50000 - 10000 + 1)) + 10000;
+                envelope.classList.add('opened');
+                envelope.innerText = `${(luckyMoney / 1000).toFixed(0)}K`;
+                message.innerText = `Chúc mừng! Bạn nhận được ${(luckyMoney / 1000).toFixed(0)} nghìn đồng!`;
+            });
+
+            envelopeContainer.appendChild(envelope);
+        }
+    </script>
+</body>
+</html>
